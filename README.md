@@ -15,7 +15,7 @@
  
 ## Instructions
  
- <h2> Install dependencies </h2>
+ <h3> Install dependencies </h3>
 
      npm install
 
