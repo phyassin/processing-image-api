@@ -19,27 +19,27 @@
 
      npm install
 
-<h2> Run development server </h2>
+<h3> Run development server </h3>
 
      npm run start
 
-<h2> Testing  </h2>
+<h3> Testing  </h3>
 
      npm run test
 
-<h2> Compile typescript to javascript </h2>
+<h3> Compile typescript to javascript </h3>
 
      npm run build
 
-<h2> Linting </h2>
+<h3> Linting </h3>
 
      npm run lint
 
-<h2> Formatting code with Prettier </h2>
+<h3> Formatting code with Prettier </h3>
 
      npm run format
 
-<h2> API endpoint </h2>
+<h3> API endpoint </h3>
 
      http://localhost:3000/api/image?id=fjord.jpg&width=1500&height=700
      
