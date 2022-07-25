@@ -1,12 +1,15 @@
 import express from 'express';
 import path from 'path';
-import fs from 'fs';
+import fs, { promises as pr } from 'fs';
 import sharp from 'sharp';
 
 const processImage = async (req: express.Request, res: express.Response) => {
   const myId = req.query.id;
   const myWidth = Number(req.query.width);
   const myHeight = Number(req.query.height);
+  const dirPath = path.normalize(
+    __dirname + '../../../images/thumb'
+  )
   const imgPath: string = path.normalize(
     __dirname + '../../../images/thumb/' + myId + '-' + myWidth + '-' + myHeight + '.jpg'
   );
@@ -25,15 +28,17 @@ const processImage = async (req: express.Request, res: express.Response) => {
     res.status(400).send('cannot be empty, set width and height');
     return;
   }
-
+  if (!fs.existsSync(dirPath)) {
+    pr.mkdir(dirPath);
+  }
   if (fs.existsSync(imgPath)) {
     return res.status(200).sendFile(imgPath);
   } else {
     if (myId != null) {
-      imgResize(myId as string, myWidth as unknown as number, myHeight as unknown as number);
-      await setTimeout(() => {
+      await imgResize(myId as string, myWidth as unknown as number, myHeight as unknown as number);
+      if (fs.existsSync(imgPath)) {
         return res.status(200).sendFile(imgPath);
-      }, 500);
+      }
     }
   }
 }
